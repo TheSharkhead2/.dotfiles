@@ -18,6 +18,7 @@
 
   hardware = {
     nvidia = {
+      open = false; # not needed for < 50 series
       # make sure correct Bus ID for system! Can run: lspci
       prime = {
         # sync.enable = true; # might be good when plugged into external monitor? 

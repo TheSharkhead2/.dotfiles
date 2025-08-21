@@ -4,4 +4,10 @@
   monitors = [ ];
 
   networking.hostName = "plausibly-a-shark";
+
+  hardware = {
+    nvidia = {
+      open = true; # needed for 50 series
+    };
+  };
 }
