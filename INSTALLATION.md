@@ -27,7 +27,7 @@ where we see that `sda` is the USB drive here.
 We need to ensure the drive is unmounted, so we can run: `sudo umount /dev/sda` (where replace `sda` with whatever its name is). 
 We then run: 
 ```bash
-sudo dd if=<path-to-image> of=/dev/sdX bs=4M conv=fsync
+sudo dd bs=4M conv=fsync oflag=direct status=progress if=<path-to-image> of=/dev/sdX
 ```
 ### On the device to install on
 I then booted from this usb drive into the installer. 
