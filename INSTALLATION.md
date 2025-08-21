@@ -81,6 +81,8 @@ We now need to choose which of the two configurations we want to use:
 
 We can enter the directory (`cd .dotfiles`). There are a few things we need to change, for starters, we want to use the `hardware-configuration.nix` that was generated when we first installed nix, not the one that is currently included in the configuration we just downloaded. Therefore, given the hostname you chose above, we want to copy the file at `/etc/nixos/hardware-configuration.nix` to `.dotfiles/hosts/HOSTNAME/hardware-configuration.nix`.
 
+Also, depending on when you created the ISO, the `system.stateVersion` at the bottom of `/etc/nixos/configuration.nix` may be different from the version in the `configuration.nix` file for the `plausibly-a-shark`/`conceivably-a-shark` version (this is set at the bottom of both the respective configuration files). If this is the case, update the version to the version in `/etc/nixos/configuration.nix`. DO NOT UPDATE TO A NEWER VERSION. DO NOT UPDATE THIS VALUE IN THE FUTURE.
+
 Additionally, if you picked encryption, if you look at your original generated `configuration.nix` (`vim /etc/nixos/configuration.nix`), you may see lines that look like: 
 ```nix
   boot.initrd.luks.devices."luks-c63f4f2f-e6cc-4cbf-80d2-b734d6e08c7b".device = "/dev/disk/by-uuid/c63f4f2f-e6cc-4cbf-80d2-b734d6e08c7b";
