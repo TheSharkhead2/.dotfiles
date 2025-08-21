@@ -54,6 +54,7 @@ environment.systemPackages = with pkgs; [
 You could use any text editor other than `vim`, like `nano` would work or `helix` or `nvim`.
 
 In order to rebuild nixos, you need internet (because we are installing packages here), which you can connect to by running `nmtui` and then connecting to a wifi network through the UI. This is pretty self-explanatory.
+Note that if you have ethernet, you just need to activate the wired connection.
 
 I can then run the following: 
 ```bash
