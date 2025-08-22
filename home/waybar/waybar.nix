@@ -229,17 +229,19 @@
       }
 
       #backlight {
-        padding: 0;
+        border-radius: 0 24px 24px 0;
+        padding: 0 20px;
       }
 
       #battery {
         border-radius: 24px 0 0 24px;
         margin-left: 7px;
-        padding: 0 20px; 
+        padding: 0 0 0 20px; 
       }
 
       #pulseaudio {
-        border-radius: 0 24px 24px 0;
+        border-radius: 24px 24px 24px 24px;
+        margin-left: 7px;
         padding: 0 20px; 
       }
 
