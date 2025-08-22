@@ -1,7 +1,16 @@
 { inputs, config, pkgs, systemSettings, userSettings, ... }: {
   imports = [ ../../modules/monitors.nix ];
 
-  monitors = [ ];
+  monitors = [{
+    name = "DP-3";
+    primary = true;
+    width = 3440;
+    height = 1440;
+    refreshRate = 175;
+    position = "0x0";
+    enabled = true;
+    scale = "1";
+  }];
 
   networking.hostName = "plausibly-a-shark";
 
