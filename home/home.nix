@@ -20,6 +20,8 @@
 
   home.stateVersion = "23.11"; # DONT CHANGE
 
+  nixGL.vulkan.enable = true;
+
   # set config for nix-shell and home-manager nixpkgs
   # nixpkgs.config.allowUnfree = true;
   nixpkgs.config = import ./nixpkgs-config.nix;
