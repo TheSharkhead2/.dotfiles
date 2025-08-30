@@ -47,7 +47,7 @@
     obsidian
     texliveFull
     cargo
-    # julia
+    julia
     zoxide
     fzf
     slack
@@ -65,6 +65,7 @@
     gnupg
     pinentry
     gemini-cli
+    zed-editor-fhs
   ];
 
   # Home Manager can also manage your environment variables through
