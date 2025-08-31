@@ -66,6 +66,7 @@
     pinentry
     gemini-cli
     zed-editor-fhs
+    zathura
   ];
 
   # Home Manager can also manage your environment variables through
