@@ -67,6 +67,7 @@
     gnupg
     pinentry
     gemini-cli
+    codex
     zed-editor-fhs
     zathura
   ];
