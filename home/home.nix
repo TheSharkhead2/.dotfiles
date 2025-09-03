@@ -43,6 +43,7 @@
 
   home.packages = with pkgs; [
     nixd
+    nil
     google-chrome
     google-cursor
     obsidian
