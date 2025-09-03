@@ -42,6 +42,7 @@
   };
 
   home.packages = with pkgs; [
+    nixd
     google-chrome
     google-cursor
     obsidian
