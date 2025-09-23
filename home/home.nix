@@ -43,6 +43,7 @@
 
   home.packages = with pkgs; [
     nixd
+    uv
     nil
     google-chrome
     google-cursor
