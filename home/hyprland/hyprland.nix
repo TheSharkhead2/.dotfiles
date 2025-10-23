@@ -146,7 +146,7 @@
         "tile,class:^(obsidian)$ # force obsidian to tile "
 
         "opacity 0.7 0.7,class:^(discord)$"
-        "opacity 0.5 0.3,class:^(Spotify)$"
+        "opacity 0.5 0.3,class:^(spotify)$"
 
         "opacity 0.8 0.8,class:^(firefox)$,title:(Gradescope)(.*)$"
         "opacity 0.7 0.7,class:^(firefox)$,title:(Google Calendar)(.*)$"
