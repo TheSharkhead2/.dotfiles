@@ -2,12 +2,20 @@
   description = "flake";
 
   inputs = {
-    nixpkgs = { url = "nixpkgs/nixos-unstable"; };
+    nixpkgs = {
+      url = "nixpkgs/nixos-unstable";
+    };
     home-manager = {
       url = "github:nix-community/home-manager/master";
 
       # ensure nixpkgs version is consistent
-      inputs = { nixpkgs.follows = "nixpkgs"; };
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+      };
+    };
+
+    nixpkgs-zed = {
+      url = "nixpkgs/nixos-unstable";
     };
 
     # git version of hyprland
@@ -19,14 +27,34 @@
     # };
   };
 
-  outputs = { self, nixpkgs, home-manager, ... }@inputs:
+  outputs =
+    {
+      self,
+      nixpkgs,
+      home-manager,
+      ...
+    }@inputs:
     let
       lib = nixpkgs.lib;
-      pkgs = nixpkgs.legacyPackages.${system};
 
-      # ---------- SYSTEM SETTINGS ---------- # 
+      # ---------- SYSTEM SETTINGS ---------- #
       system = "x86_64-linux";
-      systemSettings = { timezone = "America/Los_Angeles"; };
+      zedPkgs = import inputs.nixpkgs-zed { inherit system; };
+
+      overlays = [
+        (final: _prev: {
+          zed-editor-unstable = zedPkgs.zed-editor;
+          zed-editor = zedPkgs.zed-editor;
+          zed-editor-fhs = zedPkgs.zed-editor.fhs;
+          zed-editor-fhs-with-packages = zedPkgs.zed-editor.fhsWithPackages;
+        })
+      ];
+      pkgs = import nixpkgs {
+        inherit system overlays;
+      };
+      systemSettings = {
+        timezone = "America/Los_Angeles";
+      };
 
       # ----------- USER SETTINGS ----------- #
       userSettings = {
@@ -103,16 +131,24 @@
         base0Dalt3_rgb = "19, 66, 120";
         base0Dalt4_rgb = "11, 38, 69";
 
-        # main background options 
+        # main background options
         dark_background_primary = "120C2E";
         dark_background_primary_rgb = "18, 12, 46";
       };
 
-    in {
+    in
+    {
+      legacyPackages.${system} = pkgs;
       nixosConfigurations = {
         conceivably-a-shark = lib.nixosSystem {
           inherit system;
           modules = [
+            (
+              { ... }:
+              {
+                nixpkgs.overlays = overlays;
+              }
+            )
             ./hosts/conceivably-a-shark/configuration.nix
             ./configuration.nix
             ./hosts/conceivably-a-shark/hardware-configuration.nix
@@ -128,6 +164,12 @@
         plausibly-a-shark = lib.nixosSystem {
           inherit system;
           modules = [
+            (
+              { ... }:
+              {
+                nixpkgs.overlays = overlays;
+              }
+            )
             ./hosts/plausibly-a-shark/configuration.nix
             ./configuration.nix
             ./hosts/plausibly-a-shark/hardware-configuration.nix

@@ -1,4 +1,11 @@
-{ inputs, config, pkgs, lib, userSettings, ... }:
+{
+  inputs,
+  config,
+  pkgs,
+  lib,
+  userSettings,
+  ...
+}:
 
 {
   imports = [
@@ -24,7 +31,7 @@
 
   # set config for nix-shell and home-manager nixpkgs
   # nixpkgs.config.allowUnfree = true;
-  nixpkgs.config = import ./nixpkgs-config.nix;
+
   xdg.configFile."nixpkgs/config.nix".source = ./nixpkgs-config.nix;
   xdg.configFile."electron-flags.conf".source = ./electron-flags.conf;
   xdg.configFile."electron32-flags.conf".source = ./electron-flags.conf;
@@ -100,10 +107,11 @@
   dconf.settings = {
     # configuring dark mode
     "org/gnome/desktop/background" = {
-      picture-uri-dark =
-        "file://${pkgs.nixos-artwork.wallpapers.nineish-dark-gray.src}";
+      picture-uri-dark = "file://${pkgs.nixos-artwork.wallpapers.nineish-dark-gray.src}";
     };
-    "org/gnome/desktop/interface" = { color-scheme = "prefer-dark"; };
+    "org/gnome/desktop/interface" = {
+      color-scheme = "prefer-dark";
+    };
 
   };
 
@@ -120,7 +128,7 @@
     };
   };
 
-  # apparently necessary for dark mode: 
+  # apparently necessary for dark mode:
   # systemd.user.sessionVariables = home.sessionVariables;
 
   qt = {
@@ -141,8 +149,7 @@
       "ssh" = "kitten ssh";
       "b" = "btop";
       "n" = "nvtop";
-      "pjcr" =
-        "/home/${userSettings.username}/.cargo/bin/pjcr"; # project creator needs to be installed with cargo
+      "pjcr" = "/home/${userSettings.username}/.cargo/bin/pjcr"; # project creator needs to be installed with cargo
       "ns" = "nix-shell";
       "z" = "zeditor";
     };
