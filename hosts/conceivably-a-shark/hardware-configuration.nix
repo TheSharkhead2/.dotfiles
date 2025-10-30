@@ -14,22 +14,21 @@
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/64cb6d66-2573-4151-9901-e18a7c0f78c9";
+    { device = "/dev/disk/by-uuid/acd89628-ba7f-4cd3-87c2-af8886e45a5d";
       fsType = "ext4";
     };
 
-  boot.initrd.luks.devices."luks-c63f4f2f-e6cc-4cbf-80d2-b734d6e08c7b".device = "/dev/disk/by-uuid/c63f4f2f-e6cc-4cbf-80d2-b734d6e08c7b";
-
-  boot.initrd.luks.devices."luks-16723077-d6a9-4a50-b557-ff9cb881f7ef".device = "/dev/disk/by-uuid/16723077-d6a9-4a50-b557-ff9cb881f7ef";
+  boot.initrd.luks.devices."luks-469425d4-47be-40a4-82db-0f2b5c3e8da9".device = "/dev/disk/by-uuid/469425d4-47be-40a4-82db-0f2b5c3e8da9";
+  boot.initrd.luks.devices."luks-b47f9ddf-a89a-4185-b399-66cf23d2049b".device = "/dev/disk/by-uuid/b47f9ddf-a89a-4185-b399-66cf23d2049b";
 
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/54F5-C4CA";
+    { device = "/dev/disk/by-uuid/7688-9ADB";
       fsType = "vfat";
-      options = [ "fmask=0022" "dmask=0022" ];
+      options = [ "fmask=0077" "dmask=0077" ];
     };
 
   swapDevices =
-    [ { device = "/dev/disk/by-uuid/b360a299-f090-46a5-aaf7-3eaf5e0bd6b7"; }
+    [ { device = "/dev/disk/by-uuid/edaa66eb-4557-40ad-9245-88124c62f0d8"; }
     ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
