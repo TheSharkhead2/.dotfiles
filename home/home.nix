@@ -27,9 +27,6 @@
 
   home.stateVersion = "23.11"; # DONT CHANGE
 
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
-
   nixGL.vulkan.enable = true;
 
   xdg.configFile."electron-flags.conf".source = ./electron-flags.conf;
