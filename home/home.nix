@@ -29,10 +29,6 @@
 
   nixGL.vulkan.enable = true;
 
-  # set config for nix-shell and home-manager nixpkgs
-  # nixpkgs.config.allowUnfree = true;
-
-  xdg.configFile."nixpkgs/config.nix".source = ./nixpkgs-config.nix;
   xdg.configFile."electron-flags.conf".source = ./electron-flags.conf;
   xdg.configFile."electron32-flags.conf".source = ./electron-flags.conf;
   xdg.configFile."code-flags.conf".source = ./electron-flags.conf;
