@@ -144,6 +144,18 @@
       "z" = "zeditor";
     };
 
+    initContent = ''
+      pdfm() {
+        if [ "$#" -lt 2 ]; then
+          echo "Usage: pdfm output.pdf input1.pdf input2.pdf ..."
+          return 1
+        fi
+        local output_file="$1"
+        shift
+        gs -dBATCH -dNOPAUSE -q -sDEVICE=pdfwrite -sOutputFile="$output_file" "$@"
+      }
+    '';
+
     envExtra = ''
       eval "$(zoxide init --cmd cd zsh)"
     '';
