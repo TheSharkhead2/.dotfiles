@@ -49,6 +49,7 @@
           zed-editor-fhs-with-packages = zedPkgs.zed-editor.fhsWithPackages;
           gemini-cli = zedPkgs.gemini-cli;
           codex = zedPkgs.codex;
+          blender = zedPkgs.blender;
         })
       ];
       pkgs = import nixpkgs {
