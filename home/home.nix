@@ -77,6 +77,8 @@
     zed-editor-fhs
     zathura
     blender
+    asciinema
+    agg
   ];
 
   home.sessionPath = [ "$HOME/.local/bin" ];
