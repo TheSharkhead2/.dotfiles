@@ -72,6 +72,7 @@
     blender
     asciinema
     asciinema-agg
+    openconnect
   ];
 
   home.sessionPath = [ "$HOME/.local/bin" ];
