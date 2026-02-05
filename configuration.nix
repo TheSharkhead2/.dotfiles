@@ -2,7 +2,15 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ inputs, config, pkgs, systemSettings, userSettings, theme, ... }:
+{
+  inputs,
+  config,
+  pkgs,
+  systemSettings,
+  userSettings,
+  theme,
+  ...
+}:
 
 {
   imports = [
@@ -15,7 +23,10 @@
   users.users.${userSettings.username} = {
     isNormalUser = true;
     description = userSettings.name;
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+    ];
     packages = with pkgs; [ ];
   };
 
@@ -28,7 +39,9 @@
 
       nixosSystemMonitors = config.monitors;
     };
-    users = { ${userSettings.username} = import ./home/home.nix; };
+    users = {
+      ${userSettings.username} = import ./home/home.nix;
+    };
   };
 
   # Bootloader.
@@ -51,7 +64,10 @@
   programs.zsh.enable = true;
 
   # Enable networking
-  networking.networkmanager.enable = true;
+  networking.networkmanager = {
+    enable = true;
+    plugins = [ pkgs.networkmanager-openconnect ];
+  };
 
   # Set your time zone.
   time.timeZone = "America/Los_Angeles";
@@ -93,19 +109,16 @@
 
   environment.sessionVariables = {
     WLR_NO_HARDWARE_CURSORS = "1";
-    NIXOS_OZONE_WL =
-      "1"; # THIS WAS CAUSING PROBLEMS WITH (electron) APPS TAKING MINUTES TO LAUNCH
+    NIXOS_OZONE_WL = "1"; # THIS WAS CAUSING PROBLEMS WITH (electron) APPS TAKING MINUTES TO LAUNCH
 
     XDG_CURRENT_DESKTOP = "Hyprland";
     XDG_SESSION_DESKTOP = "Hyprland";
 
-    POLKIT_AUTH_AGENT =
-      "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
+    POLKIT_AUTH_AGENT = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
     # LIBVA_DRIVER_NAME = "nvidia";
     XDG_SESSION_TYPE = "wayland";
 
-    VK_DRIVER_FILES =
-      "/run/opengl-driver/share/vulkan/icd.d/nvidia_icd.x86_64.json";
+    VK_DRIVER_FILES = "/run/opengl-driver/share/vulkan/icd.d/nvidia_icd.x86_64.json";
 
   };
 
@@ -153,7 +166,9 @@
     libinput.enable = true;
     dbus.enable = true;
     gvfs.enable = true;
-    gnome = { gnome-keyring.enable = true; };
+    gnome = {
+      gnome-keyring.enable = true;
+    };
   };
 
   # Allow unfree packages
@@ -170,7 +185,10 @@
   ];
 
   # enabling flakes
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -240,7 +258,6 @@
     pipewire
 
     openconnect
-    networkmanager-openconnect
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
