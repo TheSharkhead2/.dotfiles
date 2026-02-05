@@ -73,6 +73,7 @@
     asciinema
     asciinema-agg
     openconnect
+    networkmanager-openconnect
   ];
 
   home.sessionPath = [ "$HOME/.local/bin" ];
