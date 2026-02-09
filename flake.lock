@@ -1,5 +1,18 @@
 {
   "nodes": {
+    "codex-bin": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1770309449,
+        "narHash": "sha256-lqr2IXYnfCcYg1IVowRy+4/9EHIMuEqOgxZGOhLl5Wc=",
+        "type": "tarball",
+        "url": "https://github.com/openai/codex/releases/latest/download/codex-x86_64-unknown-linux-musl.tar.gz"
+      },
+      "original": {
+        "type": "tarball",
+        "url": "https://github.com/openai/codex/releases/latest/download/codex-x86_64-unknown-linux-musl.tar.gz"
+      }
+    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -53,6 +66,7 @@
     },
     "root": {
       "inputs": {
+        "codex-bin": "codex-bin",
         "home-manager": "home-manager",
         "nixpkgs": "nixpkgs",
         "nixpkgs-zed": "nixpkgs-zed"

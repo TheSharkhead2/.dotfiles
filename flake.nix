@@ -18,6 +18,12 @@
       url = "nixpkgs/nixos-unstable";
     };
 
+    codex-bin = {
+      # GitHub redirects this URL to the latest tagged release asset.
+      url = "https://github.com/openai/codex/releases/latest/download/codex-x86_64-unknown-linux-musl.tar.gz";
+      flake = false;
+    };
+
     # git version of hyprland
     # hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
 
@@ -48,7 +54,25 @@
           zed-editor-fhs = zedPkgs.zed-editor.fhs;
           zed-editor-fhs-with-packages = zedPkgs.zed-editor.fhsWithPackages;
           gemini-cli = zedPkgs.gemini-cli;
-          codex = zedPkgs.codex;
+          codex = final.stdenvNoCC.mkDerivation {
+            pname = "codex";
+            version = "latest";
+            src = inputs.codex-bin;
+
+            installPhase = ''
+              runHook preInstall
+              install -Dm755 "$src/codex-x86_64-unknown-linux-musl" "$out/bin/codex"
+              runHook postInstall
+            '';
+
+            meta = {
+              description = "Lightweight coding agent that runs in your terminal";
+              homepage = "https://github.com/openai/codex";
+              license = final.lib.licenses.asl20;
+              mainProgram = "codex";
+              platforms = [ "x86_64-linux" ];
+            };
+          };
           blender = zedPkgs.blender;
         })
       ];
