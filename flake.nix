@@ -87,6 +87,7 @@
       userSettings = {
         username = "theo";
         name = "Theo Rode";
+        codexAuthProfile = "personal";
 
       };
 

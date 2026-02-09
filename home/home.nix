@@ -12,6 +12,7 @@
     ./helix/helix.nix
     ./starship/starship.nix
     ./kitty/kitty.nix
+    ./codex/codex.nix
     ./waybar/waybar.nix
     ./wofi/wofi.nix
     ./hyprland/hyprland.nix
@@ -26,6 +27,11 @@
   home.homeDirectory = "/home/${userSettings.username}";
 
   home.stateVersion = "23.11"; # DONT CHANGE
+
+  codexAuth = {
+    enable = true;
+    profile = userSettings.codexAuthProfile;
+  };
 
   nixGL.vulkan.enable = true;
 
