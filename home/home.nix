@@ -1,11 +1,4 @@
-{
-  inputs,
-  config,
-  pkgs,
-  lib,
-  userSettings,
-  ...
-}:
+{ inputs, config, pkgs, lib, userSettings, ... }:
 
 {
   imports = [
@@ -90,6 +83,7 @@
     blender
     asciinema
     asciinema-agg
+    ripgrep
   ];
 
   home.sessionPath = [ "$HOME/.local/bin" ];
@@ -119,11 +113,10 @@
   dconf.settings = {
     # configuring dark mode
     "org/gnome/desktop/background" = {
-      picture-uri-dark = "file://${pkgs.nixos-artwork.wallpapers.nineish-dark-gray.src}";
+      picture-uri-dark =
+        "file://${pkgs.nixos-artwork.wallpapers.nineish-dark-gray.src}";
     };
-    "org/gnome/desktop/interface" = {
-      color-scheme = "prefer-dark";
-    };
+    "org/gnome/desktop/interface" = { color-scheme = "prefer-dark"; };
 
   };
 
@@ -161,7 +154,8 @@
       "ssh" = "kitten ssh";
       "b" = "btop";
       "n" = "nvtop";
-      "pjcr" = "/home/${userSettings.username}/.cargo/bin/pjcr"; # project creator needs to be installed with cargo
+      "pjcr" =
+        "/home/${userSettings.username}/.cargo/bin/pjcr"; # project creator needs to be installed with cargo
       "ns" = "nix-shell";
       "z" = "zeditor";
       "cuda-shell" = "nix-shell ~/shells/cuda-shell.nix";
